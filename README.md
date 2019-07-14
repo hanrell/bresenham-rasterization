@@ -5,7 +5,7 @@ Algorítimos de Rasterização
 ## Menu
 
 * [Introdução](#introdução)
-* [Points Rasterization](#points-rasterization)
+* [Pixels](#pixels)
 * [Digital Differential Analyzer](#digital-differential-analyzer)
 * [Bresenham Algorithm](#bresenham-algorithm)
 * [Drawing Triangles](#drawing-triangles)
@@ -39,8 +39,17 @@ A maioria dos monitores no mercado utilizam o padrão RGBA, onde cada pixel poss
 
 <p align="center">
 	<br>
-	<img src="./prints/matrix.png"/ width=600px height=400px>
-	<h5 align="center">Figure 1 - Rasterization representation</h5>
+	<img src="./images/Screenshot from 2019-07-14 11-30-10.png"/ width=720px height=400px>
+	<h5 align="center">Figura 1 - Disposição dos pixels na memória</h5>
+	<br>
+</p>
+
+Com essas informações, temos capacidade de endereçar cada pixel (e cada canal de cor) no *colour buffer* da seguinte forma:
+
+<p align="center">
+	<br>
+	<img src="./images/Screenshot from 2019-07-14 11-49-37.png"/ width=720px height=400px>
+	<h5 align="center">Figura 2 - Endereçamento de pixels no colour buffer</h5>
 	<br>
 </p>
 
