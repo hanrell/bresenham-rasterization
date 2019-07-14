@@ -4,7 +4,7 @@ Algorítimos de Rasterização
 
 ## Menu
 
-* [Introduction](#introduction)
+* [Introdução](#introdução)
 * [Points Rasterization](#points-rasterization)
 * [Digital Differential Analyzer](#digital-differential-analyzer)
 * [Bresenham Algorithm](#bresenham-algorithm)
@@ -15,7 +15,7 @@ Algorítimos de Rasterização
 
 ---
 
-### Introduction
+### Introdução
 Este trabalho foi desenvolvido para a disciplina de Introdução à Computação Gŕafica, ministrada pelo Prof. Dr. Christian Azambuja Pagot, na Universidade Federal da Paraíba.
 
 O trabalho trata da implementação do algorítmo de Bresenham para a rasterização de primitivas geométricas nas linguagens C/C++.
@@ -29,7 +29,13 @@ Com a evolução das tecnologias, e por questões de segurança, os sistemas ope
 
 ---
 
-### Points Rasterization
+### Pixels
+
+Os monitores da atualidade são compostos por uma malha de pixels, com X pixels de largura por Y pixels de altura, formando um espaço bidimensional. Entretanto, a disposição desses pixels na memória de vídeo se dá de forma linear, onde todos os pixels são armazenados de forma contínua no que chamamos de *colour buffer*. Este fato deve ser levado em consideração quando se trabalha com a manipulação de pixels.
+
+A maioria dos monitores no mercado utilizam o padrão RGBA, onde cada pixel possui 4 componentes de cor: R para vermelho (RED), G para verde (GREEN), B para azul (BLUE) e A para transparência (ALPHA). Cada componente ocupa 1 byte do *colour buffer*, totalizando 4 bytes por pixel. Para facilitar o entendimento, vejamos o seguinte esquema:
+
+
 
 <p align="center">
 	<br>
