@@ -147,3 +147,28 @@ void setarDist(Pixel inicial, Pixel final, Steps *dist){
 }
 ```
 
+Por fim, foi criada a função **interpolar()** que recebe como parâmetro um ponteiro para o pixel inicial que será acendido na tela e todas as suas informações de distância contidas em *Steps*. Nessa função, é realizado o cálculo para se obter os novos valores RGBA, baseados na distância que falta para chegar nos valores RGBA do pixel final. Cada ponto a ser gerado na linha vai possuir valores de cor mais próximos do valor final, resultando numa mudança gradual da cor da linha.
+```C++
+void interpolar(Pixel *inicial, Steps dist){
+    inicial->red += dist.redStep;
+    inicial->green += dist.greenStep;
+    inicial->blue += dist.blueStep;
+    inicial->alpha += dist.alphaStep;
+}
+```
+Esses cálculos serão sempre realizados antes da impressão do pixel na tela, portanto, sempre antes da chamada **putPixel()**.
+
+Esses são os resultados:
+<p align="center">
+	<br>
+	<img src="./images/triangulointerpolado.png"/ width=512px height=512px>
+	<h5 align="center">Figura 6 - Função interpolar()</h5>
+	<br>
+</p>
+
+<p align="center">
+	<br>
+	<img src="./images/linhasinterpoladas.png"/ width=512px height=512px>
+	<h5 align="center">Figura 7 - Função interpolar()</h5>
+	<br>
+</p>
