@@ -183,5 +183,5 @@ Possíveis melhorias seriam tentar fazer novos tipos de linhas, mais grossos por
 ### Referências Bibliográficas
 
 * Notas de aula do Prof. Christian
-* [Bleeptrack - Bresenham Algorithmus] (http://www.bleeptrack.de/tutorials/bresenham/)
-* [Bresenham's line algorithm] (https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+* [Bleeptrack - Bresenham Algorithmus](http://www.bleeptrack.de/tutorials/bresenham/)
+* [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
