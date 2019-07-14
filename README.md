@@ -10,6 +10,7 @@ Algorítimos de Rasterização
 * [Triângulos](#triângulos)
 * [Interpolação Linear de Cores](#interpolação-linear-de-cores)
 * [Conclusão](#conclusão)
+* [Contribuidores](#contribuidores)
 * [Referências Bibliográficas](#referências-bibliográficas)
 
 ---
@@ -179,6 +180,11 @@ Após o desenvolvimento deste trabalho, ficou claro que a maior dificuldade foi 
 Com esse trabalho fomos capazes de compreender afundo como funciona a rasterização de primitivas. Foi uma imersão no algorítimo de Bresenham que cuminou em resultados muito satisfatórios em termos de aprendizado.
 
 Possíveis melhorias seriam tentar fazer novos tipos de linhas, mais grossos por exemplo. Além disso, seria interessante preencher os triângulos.
+
+### Contribuidores
+
+* [Hanrell Ramon Ribeiro de Souza](https://github.com/hanrell)
+* [Iderval da Costa e Silva Neto](https://github.com/rocinante02)
 
 ### Referências Bibliográficas
 
