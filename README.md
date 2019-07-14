@@ -161,7 +161,7 @@ Esses cálculos serão sempre realizados antes da impressão do pixel na tela, p
 Esses são os resultados:
 <p align="center">
 	<br>
-	<img src="./images/triangulointerpolado.png"/ width=512px height=512px>
+	<img src="./images/triangulointerpolado1.png"/ width=512px height=512px>
 	<h5 align="center">Figura 6 - Função interpolar()</h5>
 	<br>
 </p>
