@@ -9,9 +9,8 @@ Algorítimos de Rasterização
 * [?](#)
 * [Triângulos](#triângulos)
 * [Interpolação Linear de Cores](#interpolação-linear-de-cores)
-* [Conclusion](#conclusion)
-* [References](#references)
-* [Build Instructions](#build-instructions)
+* [Conclusão](#conclusão)
+* [Referências Bibliográficas](#referências-bibliográficas)
 
 ---
 
@@ -172,3 +171,17 @@ Esses são os resultados:
 	<h5 align="center">Figura 7 - Função interpolar()</h5>
 	<br>
 </p>
+
+### Conclusão
+
+Após o desenvolvimento deste trabalho, ficou claro que a maior dificuldade foi a compreensão do algorítimo de Bresenham. Leva um pouco de tempo até se compreender como funciona, o que se repete, o que se incrementa ou decrementa. Além disso, a generalização para os outros octantes exige um pouco de raciocínio.
+
+Com esse trabalho fomos capazes de compreender afundo como funciona a rasterização de primitivas. Foi uma imersão no algorítimo de Bresenham que cuminou em resultados muito satisfatórios em termos de aprendizado.
+
+Possíveis melhorias seriam tentar fazer novos tipos de linhas, mais grossos por exemplo. Além disso, seria interessante preencher os triângulos.
+
+### Referências Bibliográficas
+
+* Notas de aula do Prof. Christian
+* [Bleeptrack - Bresenham Algorithmus] (http://www.bleeptrack.de/tutorials/bresenham/)
+* [Bresenham's line algorithm] (https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
