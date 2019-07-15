@@ -287,7 +287,7 @@ void interpolar(Pixel *inicial, Steps dist){
 }
 ```
 
-Após isso, temos que implementar a interpolação ma função **drawLine()**. De começo, temos que setar os incrementos de cores a cada pixel. Isso é feito logo antes de se colocar o pixel inicial:
+Após isso, temos que implementar a interpolação na função **drawLine()**. De começo, temos que setar os incrementos de cores a cada pixel. Isso é feito logo antes de se colocar o pixel inicial:
 
 ```C++
 ...
