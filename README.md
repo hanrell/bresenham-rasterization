@@ -91,7 +91,7 @@ Obtivemos esses resultados:
 
 ### Algoritmo de Bresenham
 
-A etapa mais complicada do projeto foi a rasterização de linhas. Para isso, foi criada a função DrawLine(), que recebe dois pixels como parâmetro, e desenha uma reta aproximada entre eles.
+A etapa mais complicada do projeto foi a rasterização de linhas. Para isso, foi criada a função **drawLine()**, que recebe dois pixels como parâmetro, e desenha uma reta aproximada entre eles.
 
 Para essa função foi utilizado o algoritmo de Bresenham, muito utilizado na computação para rasterização de linhas. O algoritmo de Bresenham, de forma simplificada, busca aproximar uma reta (que sabemos que é contínua), para um universo discreto. Para isso, transforma-se a linha a ser desenhada em uma equação de reta, da forma y = mx + b.
 
@@ -134,21 +134,19 @@ void drawLine(Pixel inicial, Pixel final){
     if(yf > yi) incY = 1;
     else incY = -1;
 
-    Steps steps;
-    setarDist(inicial,final,&steps);
     putPixel(inicial);
     Pixel linha = {inicial.x, inicial.y, inicial.red, inicial.green, inicial.blue, inicial.alpha};  //Esse pixel é o que se moverá e pintará a linha
 ```
 
-Essa é a parte inicial da função, que vai definir em qual octante será desenhada linha, baseado nos pixels passados como parâmetro.
+Essa é a parte inicial da função, que vai definir em qual octante será desenhada linha, baseado nos pixels passados como parâmetro. Também é criado o pixel "linha", que será nosso pixel "ambulante". Isso é, será ele que percorrerá a linha, mudando de coordenadas, e pintando cada pixel individual.
+
 ```C++
     if(dx == 0){
         if(yf > yi){    //linha pra baixo
             while(linha.y != yf)
             {
 
-                linha.y++;
-                interpolar(&linha,steps);
+                linha.y++;              
                 putPixel(linha);
 
             }
@@ -157,8 +155,7 @@ Essa é a parte inicial da função, que vai definir em qual octante será desen
             while(linha.y != yf)
             {
 
-                linha.y--;
-                interpolar(&linha,steps);
+                linha.y--;               
                 putPixel(linha);
 
             }
@@ -170,8 +167,7 @@ Essa é a parte inicial da função, que vai definir em qual octante será desen
             while(linha.x != xf)
             {
 
-                linha.x++;
-                interpolar(&linha,steps);
+                linha.x++;                
                 putPixel(linha);
 
             }
@@ -180,8 +176,7 @@ Essa é a parte inicial da função, que vai definir em qual octante será desen
             while(linha.x != xf)
             {
 
-                linha.x--;
-                interpolar(&linha,steps);
+                linha.x--;                
                 putPixel(linha);
 
             }
@@ -201,8 +196,7 @@ else {
                 if (controle < 0) {
                     linha.y += incY;
                     controle += dx;
-                }
-                interpolar(&linha,steps);
+                }                
                 putPixel(linha);
             }
 
@@ -215,15 +209,21 @@ else {
                 if (controle < 0) {
                     linha.x += incX;
                     controle += dy;
-                }
-                interpolar(&linha,steps);
+                }                
                 putPixel(linha);
             }
 
         }
 ```
 
-O primeiro if desenha linhas em que o deslocamento x é maior do que deslocamento y. Isso é, nos octantes 1, 4, 5, e 8. Por consequência, o else é responsável pelos octantes 2, 3, 6, e 7.
+O primeiro if desenha linhas em que o deslocamento x é maior do que deslocamento y. Isso é, nos octantes 1, 4, 5, e 8. Por consequência, o else é responsável pelos octantes 2, 3, 6, e 7. Após a implementação, podemos verificar o resultado: 
+
+<p align="center">
+	<br>
+	<img src="./images/DrawLine sem interpolação.png"/ width=512px height=512px>
+	<h5 align="center">Figura 6 - Função drawTriangle()</h5>
+	<br>
+</p>
 
 
 
@@ -286,7 +286,25 @@ void interpolar(Pixel *inicial, Steps dist){
     inicial->alpha += dist.alphaStep;
 }
 ```
+
+Após isso, temos que implementar a interpolação ma função **drawLine()**. De começo, temos que setar os incrementos de cores a cada pixel. Isso é feito logo antes de se colocar o pixel inicial:
+
+```C++
+...
+Steps steps;
+setarDist(inicial,final,&steps);
+putPixel(inicial);
+...
+```
+ 
 Esses cálculos serão sempre realizados antes da impressão do pixel na tela, portanto, sempre antes da chamada **putPixel()**.
+
+```C++
+...
+interpolar(&linha,steps);
+putPixel(linha);
+...
+```
 
 Esses são os resultados:
 <p align="center">
