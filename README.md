@@ -57,8 +57,8 @@ Com essas informações, foi implementado um tipo estruturado **pixel** contendo
 
 ```C++
 typedef struct Pixel {
-	int x;
-	int y;
+    int x;
+    int y;
 
     double red;
     double green;
@@ -89,31 +89,161 @@ Obtivemos esses resultados:
 	<br>
 </p>
 
-### ?
+### Algoritmo de Bresenham
+
+A etapa mais complicada do projeto foi a rasterização de linhas. Para isso, foi criada a função DrawLine(), que recebe dois pixels como parâmetro, e desenha uma reta aproximada entre eles.
+
+Para essa função foi utilizado o algoritmo de Bresenham, muito utilizado na computação para rasterização de linhas. O algoritmo de Bresenham, de forma simplificada, busca aproximar uma reta (que sabemos que é contínua), para um universo discreto. Para isso, transforma-se a linha a ser desenhada em uma equação de reta, da forma y = mx + b.
+
+A cada incremento de x, y incrementa baseado na inclinação m. Isso, porém, quer dizer que y assumirá valores de pontos flutuante, o que dificulta a representação por meio de pixels. O algoritmo de Bresenham chega então na etapa de decisão: a cada vez que x muda, verifica-se se o valor de y equivalente está mais próximo do y atual, ou de y + 1. Após a decisão, o pixel escolhido é acendido. Isso pode ser visto de uma forma melhor na seguinte imagem: 
+
+<p align="center">
+	<br>
+	<img src="./images/bresenham2.png"/ width=512px height=512px>
+	<h5 align="center">Figura 4 - Linha de Bresenham </h5>
+	<br>
+</p>
+
+Porém, da forma apresentada, o algoritmo funciona apenas para linhas no primeiro octante. Isso é, o octante em que o deslocamento em xe y são positivos, e a inclinação da reta está entre 0º e 45º graus. 
+
+<p align="center">
+	<br>
+	<img src="./images/Octants.png"/ width=512px height=512px>
+	<h5 align="center">Figura 5 - Octantes </h5>
+	<br>
+</p>
+
+Para a implementação funcionar para qualquer reta, foi necessário generalizar o algoritmo. Além disso, retas horizontais e retas verticais foram implementados separadamente das retas inclinadas. O algoritmo foi implementado da seguinte forma: 
+
+```C++
+void drawLine(Pixel inicial, Pixel final){
+    int xi = inicial.x;
+    int xf = final.x;
+    int yi = inicial.y;
+    int yf = final.y;
+    int dx = abs(xf - xi);
+    int dy = abs(yf - yi);
+    int controle = 0;   //Controla se a direção menor vai crescer ou nao;
+    int incX = 0;
+    int incY = 0;
+
+    //Define se Y e X estão indo nas direções positivas ou negativas
+    if(xf > xi) incX = 1;
+    else incX = -1;
+
+    if(yf > yi) incY = 1;
+    else incY = -1;
+
+    Steps steps;
+    setarDist(inicial,final,&steps);
+    putPixel(inicial);
+    Pixel linha = {inicial.x, inicial.y, inicial.red, inicial.green, inicial.blue, inicial.alpha};  //Esse pixel é o que se moverá e pintará a linha
+```
+
+Essa é a parte inicial da função, que vai definir em qual octante será desenhada linha, baseado nos pixels passados como parâmetro.
+```C++
+    if(dx == 0){
+        if(yf > yi){    //linha pra baixo
+            while(linha.y != yf)
+            {
+
+                linha.y++;
+                interpolar(&linha,steps);
+                putPixel(linha);
+
+            }
+        }
+        else{           //linha pra cima
+            while(linha.y != yf)
+            {
+
+                linha.y--;
+                interpolar(&linha,steps);
+                putPixel(linha);
+
+            }
+        }
+
+    }
+    else if(dy == 0){
+        if(xf > xi){    //linha pra direita
+            while(linha.x != xf)
+            {
+
+                linha.x++;
+                interpolar(&linha,steps);
+                putPixel(linha);
+
+            }
+        }
+        else{           //linha pra esquerda
+            while(linha.x != xf)
+            {
+
+                linha.x--;
+                interpolar(&linha,steps);
+                putPixel(linha);
+
+            }
+        }
+    }
+``` 
+Essa parte ficou responsável por pintar linhas sem inclinação.
+```C++
+else {
+        if (dx >= dy) {
+
+            controle = dx / 2;
+            putPixel(inicial);
+            while (linha.x != xf) {
+                linha.x += incX;
+                controle = controle - dy;
+                if (controle < 0) {
+                    linha.y += incY;
+                    controle += dx;
+                }
+                interpolar(&linha,steps);
+                putPixel(linha);
+            }
+
+        } else {
+            controle = dy / 2;
+            putPixel(inicial);
+            while (linha.y != yf) {
+                linha.y += incY;
+                controle = controle - dx;
+                if (controle < 0) {
+                    linha.x += incX;
+                    controle += dy;
+                }
+                interpolar(&linha,steps);
+                putPixel(linha);
+            }
+
+        }
+```
+
+O primeiro if desenha linhas em que o deslocamento x é maior do que deslocamento y. Isso é, nos octantes 1, 4, 5, e 8. Por consequência, o else é responsável pelos octantes 2, 3, 6, e 7.
+
+
 
 ### Triângulos
 
 Passada a implementação mais complicada do projeto, vamos tirar proveito do funcionamento da função **drawLine()** para desenvolver a função **drawTriangle()**. Esta função recebe como parâmentro 3 pixels que representam os vértices do triângulo. A função, então, rasteriza 3 linhas ligando os vértices:
 
-```C++
-void drawTriangle(Pixel p1, Pixel p2, Pixel p3){
-    drawLine(p1,p2);
-    drawLine(p2,p3);
-    drawLine(p3,p1);
-}
-```
+
 
 Como resultado, obtivemos:
 <p align="center">
 	<br>
 	<img src="./images/triangulo.png"/ width=512px height=512px>
-	<h5 align="center">Figura 4 - Função drawTriangle()</h5>
+	<h5 align="center">Figura 6 - Função drawTriangle()</h5>
 	<br>
 </p>
 <p align="center">
 	<br>
 	<img src="./images/triangulo1.png"/ width=512px height=512px>
-	<h5 align="center">Figura 5 - Função drawTriangle()</h5>
+	<h5 align="center">Figura 7 - Função drawTriangle()</h5>
 	<br>
 </p>
 
@@ -162,14 +292,14 @@ Esses são os resultados:
 <p align="center">
 	<br>
 	<img src="./images/triangulointerpolado1.png"/ width=512px height=512px>
-	<h5 align="center">Figura 6 - Função interpolar()</h5>
+	<h5 align="center">Figura 8 - Função interpolar()</h5>
 	<br>
 </p>
 
 <p align="center">
 	<br>
 	<img src="./images/linhasinterpoladas.png"/ width=512px height=512px>
-	<h5 align="center">Figura 7 - Função interpolar()</h5>
+	<h5 align="center">Figura 9 - Função interpolar()</h5>
 	<br>
 </p>
 
