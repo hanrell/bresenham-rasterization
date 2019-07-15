@@ -221,7 +221,7 @@ O primeiro if desenha linhas em que o deslocamento x é maior do que deslocament
 <p align="center">
 	<br>
 	<img src="./images/DrawLine sem interpolação.png"/ width=512px height=512px>
-	<h5 align="center">Figura 6 - Função drawTriangle()</h5>
+	<h5 align="center">Figura 6 - Linhas rasterizadas </h5>
 	<br>
 </p>
 
@@ -237,13 +237,13 @@ Como resultado, obtivemos:
 <p align="center">
 	<br>
 	<img src="./images/triangulo.png"/ width=512px height=512px>
-	<h5 align="center">Figura 6 - Função drawTriangle()</h5>
+	<h5 align="center">Figura 7 - Função drawTriangle()</h5>
 	<br>
 </p>
 <p align="center">
 	<br>
 	<img src="./images/triangulo1.png"/ width=512px height=512px>
-	<h5 align="center">Figura 7 - Função drawTriangle()</h5>
+	<h5 align="center">Figura 8 - Função drawTriangle()</h5>
 	<br>
 </p>
 
@@ -310,14 +310,14 @@ Esses são os resultados:
 <p align="center">
 	<br>
 	<img src="./images/triangulointerpolado1.png"/ width=512px height=512px>
-	<h5 align="center">Figura 8 - Função interpolar()</h5>
+	<h5 align="center">Figura 9 - Função interpolar()</h5>
 	<br>
 </p>
 
 <p align="center">
 	<br>
 	<img src="./images/linhasinterpoladas.png"/ width=512px height=512px>
-	<h5 align="center">Figura 9 - Função interpolar()</h5>
+	<h5 align="center">Figura 10 - Função interpolar()</h5>
 	<br>
 </p>
 
