@@ -99,7 +99,7 @@ A cada incremento de x, y incrementa baseado na inclinação m. Isso, porém, qu
 
 <p align="center">
 	<br>
-	<img src="./images/bresenham2.png"/ width=512px height=512px>
+	<img src="./images/bresenham2.png"/ width=512px height=256px>
 	<h5 align="center">Figura 4 - Linha de Bresenham </h5>
 	<br>
 </p>
