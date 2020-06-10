@@ -25,7 +25,7 @@ $ make
 
 $ ./cgprog
 
-Com a evolução das tecnologias, e por questões de segurança, os sistemas operacionais atuais impedem o acesso direto a memória à memória de vídeo. Por esse motivo, será usado um framework desenvolvido pelo professor que simula esse acesso à memória.
+Com a evolução das tecnologias, e por questões de segurança, os sistemas operacionais atuais impedem o acesso direto à memória de vídeo. Por esse motivo, será usado um framework desenvolvido pelo professor que simula esse acesso à memória.
 
 ---
 
